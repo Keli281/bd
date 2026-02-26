@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>ISAAC · PUSHING 30 · ORBIT CARDS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (Free) - FIXED LINK -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
     <style>
         * {
@@ -439,26 +440,128 @@
         }
 
         @media (max-width: 1100px) {
+            body {
+                padding: 1rem;
+                align-items: flex-start;
+            }
+
             .orbit-container {
                 flex-direction: column;
-                gap: 2rem;
+                gap: 1.5rem;
                 min-height: auto;
-                padding: 2rem 0;
+                padding: 1rem 0 5rem;
+                width: 100%;
             }
             
             .centerpiece {
                 position: relative;
-                margin: 2rem 0;
+                width: 220px;
+                height: 220px;
+                margin: 1rem auto 0;
+                animation: center-glow-mobile 3s infinite alternate, center-float-mobile 4s infinite alternate;
+            }
+
+            .centerpiece .big-icon {
+                font-size: 3.5rem;
+                animation: icon-spin-mobile 8s infinite linear;
+            }
+
+            .centerpiece .greeting {
+                font-size: 1.6rem;
+                letter-spacing: 2px;
+            }
+
+            .centerpiece .sub-greeting {
+                font-size: 1rem;
+                letter-spacing: 4px;
+            }
+
+            .centerpiece .floating-icons i {
+                font-size: 1.4rem;
+            }
+
+            @keyframes center-glow-mobile {
+                0% { box-shadow: 0 0 40px #ff3b3b, inset 0 0 20px #ff9f9f; }
+                100% { box-shadow: 0 0 80px #ff8f8f, inset 0 0 50px #ffe0e0; }
+            }
+
+            @keyframes center-float-mobile {
+                0% { transform: translateY(0px) rotate(-1deg); }
+                100% { transform: translateY(-10px) rotate(1deg); }
+            }
+
+            @keyframes icon-spin-mobile {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
             }
             
             .orbit-card {
                 position: relative;
-                animation: none;
-                margin: 1rem 0;
+                animation: card-appear 0.5s ease-out, card-float-mobile 3s infinite alternate;
+                margin: 0.75rem auto;
                 transform: rotate(0deg) !important;
+                width: 200px;
+                height: 200px;
+                opacity: 0;
+                animation: card-appear 0.5s ease-out forwards, card-float-mobile 3s infinite alternate;
             }
-            
-            .tiny-whisper { display: none; }
+
+            .orbit-card:nth-child(2) { animation-delay: 0.1s, 0.1s; }
+            .orbit-card:nth-child(3) { animation-delay: 0.2s, 0.2s; }
+            .orbit-card:nth-child(4) { animation-delay: 0.3s, 0.3s; }
+            .orbit-card:nth-child(5) { animation-delay: 0.4s, 0.4s; }
+            .orbit-card:nth-child(6) { animation-delay: 0.5s, 0.5s; }
+            .orbit-card:nth-child(7) { animation-delay: 0.6s, 0.6s; }
+            .orbit-card:nth-child(8) { animation-delay: 0.7s, 0.7s; }
+            .orbit-card:nth-child(9) { animation-delay: 0.8s, 0.8s; }
+            .orbit-card:nth-child(10) { animation-delay: 0.9s, 0.9s; }
+            .orbit-card:nth-child(11) { animation-delay: 1s, 1s; }
+
+            @keyframes card-appear {
+                0% { opacity: 0; transform: translateY(30px) scale(0.8); }
+                100% { opacity: 1; transform: translateY(0) scale(1); }
+            }
+
+            @keyframes card-float-mobile {
+                0% { transform: translateY(0px) rotate(-1deg); }
+                100% { transform: translateY(-8px) rotate(1deg); }
+            }
+
+            .orbit-card i { font-size: 2.2rem; }
+            .orbit-card .main-text { font-size: 1.6rem; }
+            .orbit-card .sub-text { font-size: 1rem; }
+            .orbit-card .emoji-text { font-size: 1.8rem; }
+            .strong-fragment { font-size: 2rem; }
+            .isaac-icon { font-size: 3rem; }
+            .primary-shout { font-size: 1.5rem; }
+            .echo-line { font-size: 0.9rem; padding: 0.3rem; }
+            .chess-link { font-size: 1.1rem; padding: 0.4rem 1rem; }
+
+            .streak, .streak-vertical {
+                animation-duration: 8s;
+                opacity: 0.3;
+            }
+
+            .ember {
+                animation-duration: 6s;
+            }
+
+            .sparkle {
+                animation-duration: 2s;
+            }
+
+            .pulse-wave {
+                animation: pulseMove 10s infinite alternate;
+            }
+
+            .tiny-whisper { 
+                display: block;
+                font-size: 0.7rem;
+                bottom: 2%;
+                animation: fadePulse 3s infinite;
+                white-space: nowrap;
+                letter-spacing: 3px;
+            }
         }
     </style>
 </head>
@@ -540,7 +643,7 @@
 
         <div class="orbit-card" style="animation-delay: -14s;">
             <i class="fas fa-chess-queen"></i>
-            <span class="sub-text">TUCHEZE</span>
+            <span class="sub-text">TUCHEZE CHESS</span>
             <a href="https://www.chess.com/member/elospiral" target="_blank" class="chess-link">
                 <i class="fas fa-chess-board"></i> 🤭 <i class="fas fa-arrow-up-right-from-square"></i>
             </a>
@@ -550,7 +653,6 @@
             <i class="fas fa-heart" style="color: #ff6b6b;"></i>
             <span class="main-text">HBD</span>
             <i class="fas fa-heart" style="color: #ff6b6b;"></i>
-            <span class="emoji-text">❤️</span>
         </div>
 
         <div class="orbit-card" style="animation-delay: -18s;">

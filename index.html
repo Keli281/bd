@@ -2,699 +2,156 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>ISAAC · PUSHING 30 · ORBIT CARDS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 (Free) - FIXED LINK -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0-beta3/css/all.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Isaac</title>
     <style>
-        * {
+        :root {
+            --deep-red: #8b0000;
+            --crimson: #dc143c;
+            --soft-red: #ff4d4d;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            background: #100000;
-            font-family: 'Space Grotesk', sans-serif;
-            position: relative;
-            overflow-x: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .red-void {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background: radial-gradient(circle at 30% 50%, #b00000 0%, #3d0000 70%, #1a0000 100%);
-            overflow: hidden;
-        }
-
-        .red-void::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: repeating-linear-gradient(45deg, 
-                transparent 0px, 
-                transparent 40px, 
-                rgba(255, 80, 80, 0.03) 40px, 
-                rgba(255, 80, 80, 0.03) 80px);
-            animation: shift 30s linear infinite;
-        }
-
-        @keyframes shift {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(5%, 5%) rotate(5deg); }
-        }
-
-        .red-void::after {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            top: -50%;
-            left: -50%;
-            background: radial-gradient(circle at 70% 40%, rgba(255, 100, 100, 0.2) 0%, transparent 30%),
-                        radial-gradient(circle at 20% 80%, rgba(255, 150, 150, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 10%, rgba(255, 50, 50, 0.1) 0%, transparent 50%);
-            animation: rotateGlow 40s infinite linear;
-            pointer-events: none;
-        }
-
-        @keyframes rotateGlow {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(5deg) scale(1.1); }
-            100% { transform: rotate(0deg) scale(1); }
-        }
-
-        .ember {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            filter: blur(2px);
-            box-shadow: 0 0 20px #ff7a7a;
-            opacity: 0.4;
-            pointer-events: none;
-            z-index: 1;
-            animation: float-up 10s infinite;
-        }
-
-        @keyframes float-up {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.5; }
-            100% { transform: translateY(-90vh) scale(2); opacity: 0; }
-        }
-
-        .pulse-wave {
-            position: absolute;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 0, 0, 0.15) 0%, transparent 50%);
-            animation: pulseMove 15s infinite alternate;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @keyframes pulseMove {
-            0% { --x: 20%; --y: 30%; opacity: 0.3; }
-            25% { --x: 80%; --y: 40%; opacity: 0.6; }
-            50% { --x: 50%; --y: 70%; opacity: 0.4; }
-            75% { --x: 30%; --y: 80%; opacity: 0.7; }
-            100% { --x: 70%; --y: 20%; opacity: 0.3; }
-        }
-
-        .glow-ripple {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: repeating-radial-gradient(circle at 50% 50%, rgba(255, 50, 50, 0.1) 0px, transparent 50px, rgba(255, 100, 100, 0.05) 100px);
-            animation: ripple 12s infinite linear;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @keyframes ripple {
-            0% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.5); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 0.5; }
-        }
-
-        .orbit-container {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            max-width: 1300px;
-            min-height: 900px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .centerpiece {
-            position: relative;
-            width: 280px;
-            height: 280px;
-            background: rgba(180, 0, 0, 0.3);
-            backdrop-filter: blur(16px);
-            border: 3px solid rgba(255, 200, 200, 0.7);
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            box-shadow: 0 0 100px #ff4f4f, inset 0 0 60px #ff9f9f;
-            animation: center-glow 4s infinite alternate, center-float 6s infinite alternate;
-            z-index: 50;
-            transform: scale(1);
-            transition: all 0.3s ease;
-            position: relative;
             overflow: hidden;
-            pointer-events: none;
-        }
-
-        .centerpiece::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: rotateConic 8s infinite linear;
-            pointer-events: none;
-        }
-
-        @keyframes rotateConic {
-            from { transform: rotate(0deg) translate(-25%, -25%); }
-            to { transform: rotate(360deg) translate(-25%, -25%); }
-        }
-
-        @keyframes center-glow {
-            0% { box-shadow: 0 0 80px #ff3b3b, inset 0 0 40px #ff9f9f; }
-            100% { box-shadow: 0 0 150px #ff8f8f, inset 0 0 100px #ffe0e0; }
-        }
-
-        @keyframes center-float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        .centerpiece .big-icon {
-            font-size: 5rem;
-            color: #fff0f0;
-            filter: drop-shadow(0 0 30px #ff9f9f);
-            animation: icon-spin 12s infinite linear;
-            z-index: 2;
-        }
-
-        @keyframes icon-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .centerpiece .greeting {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 0 30px #ff9f9f;
-            letter-spacing: 4px;
-            font-family: 'Archivo Black', sans-serif;
-            z-index: 2;
-        }
-
-        .centerpiece .sub-greeting {
-            font-size: 1.4rem;
-            color: #ffd9d9;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            z-index: 2;
-        }
-
-        .centerpiece .floating-icons {
+            background-color: #0a0000;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
-            gap: 1.5rem;
-            margin-top: 0.5rem;
-            z-index: 2;
-        }
-
-        .centerpiece .floating-icons i {
-            font-size: 2rem;
-            color: #ffcaca;
-            filter: drop-shadow(0 0 15px #ff7a7a);
-            animation: icon-bounce 2s infinite alternate;
-        }
-
-        .centerpiece .floating-icons i:nth-child(2) { animation-delay: 0.3s; }
-        .centerpiece .floating-icons i:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes icon-bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-10px); }
-        }
-
-        .orbit-card {
-            position: absolute;
-            width: 220px;
-            height: 220px;
-            background: rgba(120, 0, 0, 0.5);
-            backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 120, 120, 0.4);
-            border-radius: 30px;
-            padding: 1.2rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 50px rgba(255, 0, 0, 0.3);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            color: var(--white);
+        }
+
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            gap: 0.8rem;
-            animation: orbit 20s infinite linear;
-            transform-origin: center;
-            pointer-events: none;
+            padding: 2rem;
+            background: rgba(139, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2.5s ease-out;
         }
 
-        @keyframes orbit {
-            from { transform: rotate(0deg) translateX(380px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(380px) rotate(-360deg); }
-        }
-
-        .orbit-card i { 
-            font-size: 2.8rem; 
-            background: linear-gradient(135deg, #ffd6d6, #ff6b6b);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            filter: drop-shadow(0 0 15px #ff4f4f);
-        }
-
-        .orbit-card .main-text {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 0 15px #ff5e5e;
-            line-height: 1.2;
-            font-family: 'Archivo Black', sans-serif;
-        }
-
-        .orbit-card .sub-text {
-            font-size: 1.2rem;
-            color: #ffb8b8;
-            text-transform: uppercase;
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
             letter-spacing: 2px;
-        }
-
-        .orbit-card .emoji-text {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 0 10px #ff7a7a);
-        }
-
-        .chess-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #a12222;
-            padding: 0.6rem 1.2rem;
-            border-radius: 40px;
-            text-decoration: none;
-            color: white;
-            font-size: 1.3rem;
-            border: 1px solid #ffa7a7;
-            box-shadow: 0 0 30px #ff5f5f;
-            margin-top: 0.3rem;
-            white-space: nowrap;
-            pointer-events: none;
-        }
-
-        .primary-shout {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            white-space: nowrap;
-        }
-
-        .echo-line {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.4rem;
-            font-size: 1rem;
-            color: #ffcdcd;
-            background: rgba(150, 0, 0, 0.4);
-            padding: 0.5rem;
-            border-radius: 30px;
-            border: 1px solid #ff8a8a;
-            width: 100%;
-        }
-
-        .strong-fragment {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #ffb3b3, #ff4d4d);
+            background: linear-gradient(to bottom, var(--white) 30%, var(--crimson));
             -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            -webkit-text-stroke: 1px #8b0000;
-        }
-
-        .isaac-icon {
-            font-size: 4rem;
-            font-family: 'Archivo Black', sans-serif;
-            color: white;
-            text-shadow: 3px 3px 0 #a10000, 5px 5px 0 #4a0000;
-        }
-
-        .streak {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), #ff8a8a, transparent);
-            pointer-events: none;
-            z-index: 5;
-            animation: streak 15s infinite;
-        }
-
-        .streak-vertical {
-            position: absolute;
-            width: 2px;
-            height: 300px;
-            background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.5), #ff8a8a, transparent);
-            pointer-events: none;
-            z-index: 5;
-            animation: streakVertical 20s infinite;
-        }
-
-        @keyframes streak {
-            0% { left: -20%; opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.8; }
-            100% { left: 120%; opacity: 0; }
-        }
-
-        @keyframes streakVertical {
-            0% { top: -20%; opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.6; }
-            100% { top: 120%; opacity: 0; }
-        }
-
-        .tiny-whisper {
-            position: absolute;
-            bottom: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.9rem;
-            color: rgba(255, 150, 150, 0.3);
-            letter-spacing: 5px;
+            -webkit-text-fill-color: transparent;
             text-transform: uppercase;
-            white-space: nowrap;
-            z-index: 20;
-            animation: fadePulse 4s infinite;
-            pointer-events: none;
         }
 
-        @keyframes fadePulse {
-            0% { opacity: 0.2; }
-            50% { opacity: 0.6; }
-            100% { opacity: 0.2; }
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--off-white);
+            opacity: 0.8;
+            margin-top: 0;
         }
 
-        .light-ray {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(90deg, transparent, rgba(255, 50, 50, 0.05) 50%, transparent 100%);
-            animation: rayMove 20s infinite linear;
-            pointer-events: none;
-            z-index: 1;
+        .accent-line {
+            width: 50px;
+            height: 3px;
+            background: var(--crimson);
+            margin: 20px auto;
+            border-radius: 2px;
         }
 
-        @keyframes rayMove {
-            0% { transform: translateX(-100%) skewX(-10deg); }
-            100% { transform: translateX(100%) skewX(-10deg); }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ffaaaa;
-            animation: sparkleTwinkle 3s infinite ease-in-out;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        @keyframes sparkleTwinkle {
-            0% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1.5); }
-            100% { opacity: 0; transform: scale(0); }
-        }
-
-        @media (max-width: 1100px) {
-            body {
-                padding: 1rem;
-                align-items: flex-start;
-            }
-
-            .orbit-container {
-                flex-direction: column;
-                gap: 1.5rem;
-                min-height: auto;
-                padding: 1rem 0 5rem;
-                width: 100%;
-            }
-            
-            .centerpiece {
-                position: relative;
-                width: 220px;
-                height: 220px;
-                margin: 1rem auto 0;
-                animation: center-glow-mobile 3s infinite alternate, center-float-mobile 4s infinite alternate;
-            }
-
-            .centerpiece .big-icon {
-                font-size: 3.5rem;
-                animation: icon-spin-mobile 8s infinite linear;
-            }
-
-            .centerpiece .greeting {
-                font-size: 1.6rem;
-                letter-spacing: 2px;
-            }
-
-            .centerpiece .sub-greeting {
-                font-size: 1rem;
-                letter-spacing: 4px;
-            }
-
-            .centerpiece .floating-icons i {
-                font-size: 1.4rem;
-            }
-
-            @keyframes center-glow-mobile {
-                0% { box-shadow: 0 0 40px #ff3b3b, inset 0 0 20px #ff9f9f; }
-                100% { box-shadow: 0 0 80px #ff8f8f, inset 0 0 50px #ffe0e0; }
-            }
-
-            @keyframes center-float-mobile {
-                0% { transform: translateY(0px) rotate(-1deg); }
-                100% { transform: translateY(-10px) rotate(1deg); }
-            }
-
-            @keyframes icon-spin-mobile {
-                from { transform: rotate(0deg); }
-                to { transform: rotate(360deg); }
-            }
-            
-            .orbit-card {
-                position: relative;
-                animation: card-appear 0.5s ease-out, card-float-mobile 3s infinite alternate;
-                margin: 0.75rem auto;
-                transform: rotate(0deg) !important;
-                width: 200px;
-                height: 200px;
-                opacity: 0;
-                animation: card-appear 0.5s ease-out forwards, card-float-mobile 3s infinite alternate;
-            }
-
-            .orbit-card:nth-child(2) { animation-delay: 0.1s, 0.1s; }
-            .orbit-card:nth-child(3) { animation-delay: 0.2s, 0.2s; }
-            .orbit-card:nth-child(4) { animation-delay: 0.3s, 0.3s; }
-            .orbit-card:nth-child(5) { animation-delay: 0.4s, 0.4s; }
-            .orbit-card:nth-child(6) { animation-delay: 0.5s, 0.5s; }
-            .orbit-card:nth-child(7) { animation-delay: 0.6s, 0.6s; }
-            .orbit-card:nth-child(8) { animation-delay: 0.7s, 0.7s; }
-            .orbit-card:nth-child(9) { animation-delay: 0.8s, 0.8s; }
-            .orbit-card:nth-child(10) { animation-delay: 0.9s, 0.9s; }
-            .orbit-card:nth-child(11) { animation-delay: 1s, 1s; }
-
-            @keyframes card-appear {
-                0% { opacity: 0; transform: translateY(30px) scale(0.8); }
-                100% { opacity: 1; transform: translateY(0) scale(1); }
-            }
-
-            @keyframes card-float-mobile {
-                0% { transform: translateY(0px) rotate(-1deg); }
-                100% { transform: translateY(-8px) rotate(1deg); }
-            }
-
-            .orbit-card i { font-size: 2.2rem; }
-            .orbit-card .main-text { font-size: 1.6rem; }
-            .orbit-card .sub-text { font-size: 1rem; }
-            .orbit-card .emoji-text { font-size: 1.8rem; }
-            .strong-fragment { font-size: 2rem; }
-            .isaac-icon { font-size: 3rem; }
-            .primary-shout { font-size: 1.5rem; }
-            .echo-line { font-size: 0.9rem; padding: 0.3rem; }
-            .chess-link { font-size: 1.1rem; padding: 0.4rem 1rem; }
-
-            .streak, .streak-vertical {
-                animation-duration: 8s;
-                opacity: 0.3;
-            }
-
-            .ember {
-                animation-duration: 6s;
-            }
-
-            .sparkle {
-                animation-duration: 2s;
-            }
-
-            .pulse-wave {
-                animation: pulseMove 10s infinite alternate;
-            }
-
-            .tiny-whisper { 
-                display: block;
-                font-size: 0.7rem;
-                bottom: 2%;
-                animation: fadePulse 3s infinite;
-                white-space: nowrap;
-                letter-spacing: 3px;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="red-void"></div>
-    
-    <div class="pulse-wave"></div>
-    <div class="glow-ripple"></div>
-    <div class="light-ray"></div>
-    
-    <div class="streak" style="top: 20%; width: 400px; animation-delay: 0s;"></div>
-    <div class="streak" style="top: 50%; width: 600px; animation-delay: 5s;"></div>
-    <div class="streak" style="top: 80%; width: 300px; animation-delay: 2s;"></div>
-    <div class="streak-vertical" style="left: 30%; animation-delay: 1s;"></div>
-    <div class="streak-vertical" style="left: 70%; animation-delay: 4s;"></div>
 
-    <div class="orbit-container">
-        
-        <div class="centerpiece">
-            <i class="fas fa-crown big-icon"></i>
-            <div class="greeting">SEND HELP</div>
-            <div class="sub-greeting">ISAAC IS 30</div>
-            <div class="floating-icons">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <div style="font-size: 1rem; color: rgba(255,255,255,0.7);">✦ 😭 ✦</div>
-        </div>
+    <canvas id="bg-canvas"></canvas>
 
-        <div class="orbit-card" style="animation-delay: 0s;">
-            <i class="fas fa-gem"></i>
-            <span class="main-text">U PUSHIN</span>
-            <span class="strong-fragment">30</span>
-            <span class="emoji-text">😭</span>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -2s;">
-            <i class="fas fa-crown"></i>
-            <div class="isaac-icon">ZAC</div>
-            <span class="sub-text">THE UNC</span>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -4s;">
-            <div class="primary-shout">
-                <i class="fas fa-bolt"></i> 30 <i class="fas fa-bolt"></i>
-            </div>
-            <div class="echo-line">
-                <span>✦30✦</span>
-                <i class="fas fa-diamond"></i>
-                <strong>30 AGAIN</strong>
-                <i class="fas fa-crown"></i>
-            </div>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -6s;">
-            <i class="fas fa-sun"></i>
-            <span class="main-text">UNC</span>
-            <span class="sub-text">ZAC</span>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -8s;">
-            <i class="fas fa-mask"></i>
-            <span class="main-text">PUSHING</span>
-            <span class="sub-text">30</span>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -10s;">
-            <i class="fas fa-wand-magic"></i>
-            <span class="main-text">30</span>
-            <span class="emoji-text">🤭</span>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -12s;">
-            <i class="fas fa-droplet"></i>
-            <span class="main-text">PUSHIN WHAT?</span>
-            <span class="emoji-text">30🤭</span>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -14s;">
-            <i class="fas fa-chess-queen"></i>
-            <span class="sub-text">TUCHEZE CHESS</span>
-            <a href="https://www.chess.com/member/elospiral" target="_blank" class="chess-link">
-                <i class="fas fa-chess-board"></i> 🤭 <i class="fas fa-arrow-up-right-from-square"></i>
-            </a>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -16s;">
-            <i class="fas fa-heart" style="color: #ff6b6b;"></i>
-            <span class="main-text">HBD</span>
-            <i class="fas fa-heart" style="color: #ff6b6b;"></i>
-        </div>
-
-        <div class="orbit-card" style="animation-delay: -18s;">
-            <i class="fas fa-skull"></i>
-            <span class="main-text">30 BONES</span>
-            <span class="emoji-text">💀</span>
-        </div>
-
-    </div>
-
-    <div class="tiny-whisper">
-        ✦ INFINITE RED · ICONIC WHITE ✦
+    <div class="container">
+        <h1> YOU'RE PUSHING 30 </h1>
+        <div class="accent-line"></div>
+        <p> 😭😭😭 </p>
     </div>
 
     <script>
-        (function() {
-            const voidEl = document.querySelector('.red-void');
-            for(let i = 0; i < 80; i++) {
-                const ember = document.createElement('div');
-                ember.className = 'ember';
-                ember.style.left = Math.random() * 100 + '%';
-                ember.style.top = Math.random() * 100 + '%';
-                ember.style.width = (2 + Math.random() * 8) + 'px';
-                ember.style.height = ember.style.width;
-                ember.style.animationDelay = Math.random() * 5 + 's';
-                ember.style.animationDuration = (8 + Math.random() * 12) + 's';
-                voidEl.appendChild(ember);
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const colors = ['#8b0000', '#dc143c', '#ff4d4d', '#ffffff'];
+
+        function init() {
+            resize();
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
             }
-            
-            for(let i = 0; i < 30; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 5 + 's';
-                sparkle.style.animationDuration = (2 + Math.random() * 4) + 's';
-                voidEl.appendChild(sparkle);
+            animate();
+        }
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
             }
 
-            document.documentElement.style.setProperty('--x', '50%');
-            document.documentElement.style.setProperty('--y', '50%');
-        })();
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.opacity = Math.random();
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        init();
     </script>
 </body>
 </html>
